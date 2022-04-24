@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+  <h2>Account Details</h2>
+  <p>@User.Identity.Name</p>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <button type="submit" class="btn btn-block dropdown-item text-danger">Log out</button>
+  }
+}
+else
+{
+  <h2>Account</h2>
+  <a href='@Url.Action("Register", "Account")'>Register new account</a>
+  <a href='@Url.Action("Login", "Account")'>Login</a>
+}

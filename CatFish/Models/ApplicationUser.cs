@@ -12,18 +12,14 @@ namespace CatFish.Models
         {
             this.Matches = new HashSet<Match>();
         }
-        [Required]
+        
+        public string ConfirmPassword { get; set; }
         public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
-        [Required]
         public string Bio { get; set; }
         public string About { get; set; }
-        [Required]
         public int Age { get; set; }
-        [Required]
         public string Species { get; set; }
-        [Required]
         public string Breed { get; set; }
         public string ImageName { get; set; }
         [NotMapped]
