@@ -2,9 +2,9 @@ namespace CatFish.Models
 {
   public class Match
   {
-    public int MatchId;
+    public int MatchId { get; set; }
 
-    public string UserId;
+    public string UserId { get; set; }
 
     public virtual ApplicationUser ApplicationUser { get; set; }
   }
