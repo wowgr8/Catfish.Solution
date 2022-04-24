@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace ProjectName.Models
+namespace CatFish.Models
 {
     public class ApplicationUser : IdentityUser
     {

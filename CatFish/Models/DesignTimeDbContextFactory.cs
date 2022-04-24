@@ -3,23 +3,23 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace ProjectName.Models
+namespace CatFish.Models
 {
-  public class ProjectNameContextFactory : IDesignTimeDbContextFactory<ProjectNameContext>
+  public class CatFishContextFactory : IDesignTimeDbContextFactory<CatFishContext>
   {
 
-    ProjectNameContext IDesignTimeDbContextFactory<ProjectNameContext>.CreateDbContext(string[] args)
+    CatFishContext IDesignTimeDbContextFactory<CatFishContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
           .SetBasePath(Directory.GetCurrentDirectory())
           .AddJsonFile("appsettings.json")
           .Build();
 
-      var builder = new DbContextOptionsBuilder<ProjectNameContext>();
+      var builder = new DbContextOptionsBuilder<CatFishContext>();
 
       builder.UseMySql(configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(configuration["ConnectionStrings:DefaultConnection"]));
 
-      return new ProjectNameContext(builder.Options);
+      return new CatFishContext(builder.Options);
     }
   }
 }

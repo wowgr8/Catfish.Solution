@@ -1,10 +1,10 @@
 // using Microsoft.VisualStudio.TestTools.UnitTesting;
-// using ProjectName.Models;
+// using CatFish.Models;
 
-// namespace ProjectName.Tests
+// namespace CatFish.Tests
 // {
 //   [TestClass]
-//   public class ClassNameTests
+//   public class MatchTests
 //   {
 //     // Test methods go here
 //   }
