@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using CatFish.ViewModels;
+using System.Security.Claims;
 
 namespace CatFish.Controllers
 {
@@ -86,5 +87,55 @@ namespace CatFish.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ApplicationUser applicationUser)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currrentUser = await _userManager.FindByIdAsync(userId);
+            if (applicationUser.ImageFile != null)
+            {
+                //TODO Setup Delete function for edit
+                // //Delete old image
+                // await DeleteImage(applicationUser.applicationUserId);
+                //Create new image
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(applicationUser.ImageFile.FileName);
+                string extention = Path.GetExtension(applicationUser.ImageFile.FileName);
+                applicationUser.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssffff") + extention;
+                string path = Path.Combine(wwwRootPath + "/img/ProfilePictures/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await applicationUser.ImageFile.CopyToAsync(fileStream);
+                }
+            }
+            currrentUser.FirstName = applicationUser.FirstName;
+            currrentUser.LastName = applicationUser.LastName;
+            currrentUser.Bio = applicationUser.Bio;
+            currrentUser.About = applicationUser.About;
+            currrentUser.Age = applicationUser.Age;
+            currrentUser.Species = applicationUser.Species;
+            currrentUser.Breed = applicationUser.Breed;
+            await _userManager.UpdateAsync(currrentUser);
+            return RedirectToAction("Index");
+        }
+
+        //TODO Refacotor DeleteImage method for user
+        
+        // public async Task<IActionResult> DeleteImage(int id)
+        // {
+        //     Treat foundTreat = await _db.Treats.AsNoTracking().FirstOrDefaultAsync(treat => treat.TreatId == id);
+        //     var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img/TreatImages/", foundTreat.ImageName);
+        //     if (System.IO.File.Exists(imagePath))
+        //     {
+        //         System.IO.File.Delete(imagePath);
+        //     }
+        //     return null;
+        // }
     }
 }
