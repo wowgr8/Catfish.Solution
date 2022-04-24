@@ -1,8 +1,8 @@
-# {Application name here}
+# CatFish
 
-#### By _**{List of contributors}**_
+#### By _**Cesar Lopez, Ebru Rice, Jack Skelton, Marni Sucher, Patrick Dolan**_
 
-#### _{Brief description of application}_
+#### _A web application for matching pets through a tinder like system._
 
 ## Technologies Used
 
@@ -13,7 +13,7 @@
 
 ## Description
 
-{This is a detailed description of your application. Give as much detail as needed to explain what the application does as well as any other information you want users or other developers to have.}
+A web application for matching pets through a tinder like system.
 
 ## Setup/Installation Requirements
 
@@ -45,8 +45,6 @@ Example of complete appsettings.json:
 * Make sure to run your mysql server and open MySql workbench.
 * Open MySql Workbench and login to your server.
 * From your terminal navigate to the <code>CatFish/</code> folder and run the command <code>dotnet ef database update</code> to create the database from migrations.
-* Now using your IDE navigate into the CatFish.Solution/CatFish folder and use the command dotnet run to launch the program.
-* The site should be available at the server address you used in the appsettings.json folder.
 * Now using your IDE in the CatFish.Solution/CatFish/ folder use the command <code>dotnet run</code> to launch the program. 
 * The site should be available at the server address you used in the <code>appsettings.json</code> folder.
 
@@ -58,18 +56,8 @@ Example of complete appsettings.json:
 <code>dotnet restore</code>  
 * Run tests by going to the test project in the terminal (CatFish.Solution/CatFish.Tests) and running the following command:  
 <code>dotnet test</code>  
-<br>--TEMPLATE INSTRUCTIONS DELETE FOLLOWING AFTER SETUP--  
-[Resource on how to build/use this template](https://www.learnhowtoprogram.com/c-and-net-part-time/test-driven-development-with-c/mstest-configuration-quick-reference)
-* In Startup.cs change CatFish for database class name in configurationServices class.  
-Example: <code>.AddDbContext<CatFishContext\></code> changed to <code>.AddDbContext<ToDoListContext\></code>
-* In CatFishContext.cs model the DbSet type and name should be renamed to what the table in the database represents.
-* <strong>Make sure to rename CatFish & Match in CatFish.Tests to match those in the CatFish directory tree.</strong>  
-* Rename the CatFish in the following files for use: CatFish in all folder its included in, Homecontroller.cs, Match.cs, PageName.cshtml, Program.cs,CatFishContext.cs, and Startup.cs.
-* Once everything is renamed and can build navigate into the production folder <code>CatFish/CatFish/</code> and run the following command to make the initial migrations directory: <br>
-<code>dotnet ef migrations add Initial</code>
 
-<br>
-* When renaming project files for new project make sure to rename all fields with "CatFish" as the directory/file name. This includes line 13 of "CatFish.Tests.csproj" to the names of your directories. 
+<code>dotnet ef migrations add Initial</code>
 
 * Make sure to change the Identity services configuration to make passwords more secure as the current settings are in place to make development easier but are not good settings for secure passwords
 
@@ -80,10 +68,10 @@ Example: <code>.AddDbContext<CatFishContext\></code> changed to <code>.AddDbCont
 ## Contact Me
 
 Let me know if you run into any issues or have questions, ideas or concerns:  
-{PUT EMAIL HERE}
+dolanp1992@gmail.com
 
 ## License
 
 _MIT_
 
-Copyright (c) _date_ _author name(s)_
+Copyright (c) _2022_ _Cesar Lopez, Ebru Rice, Jack Skelton, Marni Sucher, Patrick Dolan_
