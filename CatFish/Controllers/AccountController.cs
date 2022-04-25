@@ -131,7 +131,10 @@ namespace CatFish.Controllers
             currentUser.Age = applicationUser.Age;
             currentUser.Species = applicationUser.Species;
             currentUser.Breed = applicationUser.Breed;
-            currentUser.ImageName = applicationUser.ImageName;
+            if (applicationUser.ImageFile != null)
+            {
+                currentUser.ImageName = applicationUser.ImageName;
+            }
             await _userManager.UpdateAsync(currentUser);
             return RedirectToAction("Index");
         }
