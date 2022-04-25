@@ -2,11 +2,13 @@
   Layout = "_Layout";
 }
 
+@model CatFish.Models.ApplicationUser
 
 @if (User.Identity.IsAuthenticated)
 {
   <h2>Account Details</h2>
   <p>@User.Identity.Name</p>
+  <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="rounded-circle" alt="Default profile image." height="200">
   <p><a href='@Url.Action("Edit", "Account")'>Customize Account</a></p>
   <p><a href='@Url.Action("Delete", "Account")'>Delete Account</a></p>
   @using (Html.BeginForm("LogOff", "Account"))
