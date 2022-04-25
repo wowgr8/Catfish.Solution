@@ -52,7 +52,15 @@ namespace CatFish.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index");
+                Microsoft.AspNetCore.Identity.SignInResult loginResult = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+                if (loginResult.Succeeded)
+                {
+                    return RedirectToAction("Edit");
+                }
+                else
+                {
+                    return View();
+                }
             }
             else
             {
