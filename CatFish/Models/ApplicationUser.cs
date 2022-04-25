@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using System.ComponentModel;
+
 namespace CatFish.Models
 {
     public class ApplicationUser : IdentityUser
@@ -14,7 +16,9 @@ namespace CatFish.Models
         }
         
         public string ConfirmPassword { get; set; }
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
         public string Bio { get; set; }
         public string About { get; set; }
