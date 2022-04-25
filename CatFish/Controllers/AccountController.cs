@@ -25,9 +25,11 @@ namespace CatFish.Controllers
             _hostEnvironment = hostEnvironment;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            return View(currentUser);
         }
 
         public IActionResult Register()
@@ -88,21 +90,29 @@ namespace CatFish.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Edit()
+        public async Task<ActionResult> Edit()
         {
-            return View();
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            return View(currentUser);
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(ApplicationUser applicationUser)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currrentUser = await _userManager.FindByIdAsync(userId);
+            var currentUser = await _userManager.FindByIdAsync(userId);
             if (applicationUser.ImageFile != null)
             {
-                //TODO Setup Delete function for edit
-                // //Delete old image
-                // await DeleteImage(applicationUser.applicationUserId);
+                //Delete old image
+                if (currentUser.ImageName != null)
+                {
+                    var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img/ProfilePictures/", currentUser.ImageName);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
                 //Create new image
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(applicationUser.ImageFile.FileName);
@@ -114,29 +124,17 @@ namespace CatFish.Controllers
                     await applicationUser.ImageFile.CopyToAsync(fileStream);
                 }
             }
-            currrentUser.FirstName = applicationUser.FirstName;
-            currrentUser.LastName = applicationUser.LastName;
-            currrentUser.Bio = applicationUser.Bio;
-            currrentUser.About = applicationUser.About;
-            currrentUser.Age = applicationUser.Age;
-            currrentUser.Species = applicationUser.Species;
-            currrentUser.Breed = applicationUser.Breed;
-            await _userManager.UpdateAsync(currrentUser);
+            currentUser.FirstName = applicationUser.FirstName;
+            currentUser.LastName = applicationUser.LastName;
+            currentUser.Bio = applicationUser.Bio;
+            currentUser.About = applicationUser.About;
+            currentUser.Age = applicationUser.Age;
+            currentUser.Species = applicationUser.Species;
+            currentUser.Breed = applicationUser.Breed;
+            currentUser.ImageName = applicationUser.ImageName;
+            await _userManager.UpdateAsync(currentUser);
             return RedirectToAction("Index");
         }
-
-        //TODO Refacotor DeleteImage method for user
-        
-        // public async Task<IActionResult> DeleteImage(int id)
-        // {
-        //     Treat foundTreat = await _db.Treats.AsNoTracking().FirstOrDefaultAsync(treat => treat.TreatId == id);
-        //     var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img/TreatImages/", foundTreat.ImageName);
-        //     if (System.IO.File.Exists(imagePath))
-        //     {
-        //         System.IO.File.Delete(imagePath);
-        //     }
-        //     return null;
-        // }
 
         public ActionResult Delete()
         {
