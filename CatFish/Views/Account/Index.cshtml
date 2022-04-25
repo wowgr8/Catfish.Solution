@@ -14,7 +14,14 @@
       <div class="row">
         <!-- Profile details section -->
         <div class="col-md-9">
-          <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200">
+          @if (@Model.ImageName == null)
+          {
+            <img src="~/img/DefaultPFP.png" class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200">
+          }
+          else
+          {
+            <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200">
+          }
           <p><strong>Full Name:</strong> @Model.FirstName @Model.LastName</p>
           <p><strong>@Html.DisplayNameFor(model => model.Age):</strong> @Model.Age</p>
           <p><strong>@Html.DisplayNameFor(model => model.Bio):</strong> @Model.Bio</p>
@@ -37,7 +44,12 @@
 }
 else
 {
-  <h2>Account</h2>
-  <a href='@Url.Action("Register", "Account")'>Register new account</a>
-  <a href='@Url.Action("Login", "Account")'>Login</a>
+  <div class="card col-md-5 mx-auto text-center">
+    <div class="card-body">
+      <h2 class="card-title">Account</h2>
+      <hr>
+      <p><a href='@Url.Action("Register", "Account")'><button class="btn btn-primary w-100">Register new account</button></a></p>
+      <p><a href='@Url.Action("Login", "Account")'><button class="btn btn-primary w-100">Login</button></a></p>
+    </div>
+  </div>
 }
