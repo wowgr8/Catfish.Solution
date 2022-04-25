@@ -2,9 +2,14 @@
   Layout = "_Layout";
 }
 
-<h2>Delete Account</h2>
-
-@using (Html.BeginForm())
-{
-  <input type="submit" value="Delete Account" class="btn btn-danger">
-}
+<div class="card col-md-5 mx-auto text-center">
+  <div class="card-body">
+    <h2>Delete Account?</h2>
+    <hr>
+    <p>This action cannot be undone.</p>
+    @using (Html.BeginForm())
+    {
+      <input type="submit" value="Delete Account" class="btn btn-danger w-100">
+    }
+  </div>
+</div>

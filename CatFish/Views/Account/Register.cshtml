@@ -5,28 +5,31 @@
 @using CatFish.ViewModels
 
 @model RegisterViewModel
-
-<h2>Register Account</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype="multipart/form-data" }))
-  {
-    @Html.ValidationSummary(true)
-
-    <div class="mb-3">
-      @Html.LabelFor(user => user.Email, new { @class = "form-label" })
-      @Html.TextBoxFor(user => user.Email, new { @class = "form-control", required="required" })
-      @Html.ValidationMessageFor(user => user.Email)
-    </div>
-    <div class="mb-3">
-      @Html.LabelFor(user => user.Password, new { @class = "form-label" })
-      @Html.TextBoxFor(user => user.Password, new { @class = "form-control", required="required" })
-      @Html.ValidationMessageFor(user => user.Password)
-    </div>
-    <div class="mb-3">
-      @Html.LabelFor(user => user.ConfirmPassword, new { @class = "form-label" })
-      @Html.TextBoxFor(user => user.ConfirmPassword, new { @class = "form-control", required="required" })
-      @Html.ValidationMessageFor(user => user.ConfirmPassword)
-    </div>
-
-    <button type="submit" class="btn btn-success mb-3">Register</button>
-  }
+<div class="card col-md-5 mx-auto text-center">
+  <div class="card-body">
+    <h2>Register Account</h2>
+    <hr>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype="multipart/form-data" }))
+    {
+      @Html.ValidationSummary(true)
+  
+      <div class="mb-3">
+        @Html.LabelFor(user => user.Email, new { @class = "form-label" })
+        @Html.TextBoxFor(user => user.Email, new { @class = "form-control", required="required" })
+        @Html.ValidationMessageFor(user => user.Email)
+      </div>
+      <div class="mb-3">
+        @Html.LabelFor(user => user.Password, new { @class = "form-label" })
+        @Html.TextBoxFor(user => user.Password, new { @class = "form-control", required="required" })
+        @Html.ValidationMessageFor(user => user.Password)
+      </div>
+      <div class="mb-3">
+        @Html.LabelFor(user => user.ConfirmPassword, new { @class = "form-label" })
+        @Html.TextBoxFor(user => user.ConfirmPassword, new { @class = "form-control", required="required" })
+        @Html.ValidationMessageFor(user => user.ConfirmPassword)
+      </div>
+  
+      <button type="submit" class="btn btn-success mb-3 w-100">Register</button>
+    }
+  </div>
+</div>

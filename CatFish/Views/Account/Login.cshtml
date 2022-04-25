@@ -5,21 +5,24 @@
 @using CatFish.ViewModels
 
 @model LoginViewModel
-
-@using (Html.BeginForm())
-{
-  @Html.ValidationSummary(true)
-  <h2 class="text-center">Sign in</h2>
-  <hr>
-  <div class="mb-3">
-    @Html.LabelFor(user => user.Email, new { @class = "form-label"})
-    @Html.TextBoxFor(user => user.Email, new { @class = "form-control", required="required"})
-    @Html.ValidationMessageFor(user => user.Email)
+<div class="card col-md-5 mx-auto text-center">
+  <div class="card-body">
+    @using (Html.BeginForm())
+    {
+      @Html.ValidationSummary(true)
+      <h2 class="text-center">Sign in</h2>
+      <hr>
+      <div class="mb-3">
+        @Html.LabelFor(user => user.Email, new { @class = "form-label"})
+        @Html.TextBoxFor(user => user.Email, new { @class = "form-control", required="required"})
+        @Html.ValidationMessageFor(user => user.Email)
+      </div>
+      <div class="mb-3">
+        @Html.LabelFor(user => user.Password, new { @class = "form-label"})
+        @Html.PasswordFor(user => user.Password, new { @class = "form-control", required="required"})
+        @Html.ValidationMessageFor(user => user.Password)
+      </div>
+      <button type="submit" class="btn btn-success w-100 mb-3">Log in</button>
+    }
   </div>
-  <div class="mb-3">
-    @Html.LabelFor(user => user.Password, new { @class = "form-label"})
-    @Html.PasswordFor(user => user.Password, new { @class = "form-control", required="required"})
-    @Html.ValidationMessageFor(user => user.Password)
-  </div>
-  <button type="submit" class="btn btn-success btn-block mb-3">Log in</button>
-}
+</div>
