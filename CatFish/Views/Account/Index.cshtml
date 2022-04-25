@@ -9,12 +9,19 @@
   <h2>Account Details</h2>
   <div class="card">
     <div class="card-body">
-      <h5 class="text-center">Hello @Model.FirstName @Model.LastName!</h5>
+      @if (Model.FirstName == null)
+      {
+        <h5 class="text-center">Hello @User.Identity.Name</h5>
+      }
+      else
+      {
+        <h5 class="text-center">Hello @Model.FirstName @Model.LastName!</h5>
+      }
       <hr>
       <div class="row">
         <!-- Profile details section -->
         <div class="col-md-9">
-          @if (@Model.ImageName == null)
+          @if (Model.ImageName == null)
           {
             <img src="~/img/DefaultPFP.png" class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200">
           }
