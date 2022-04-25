@@ -3,22 +3,42 @@
 }
 
 @model CatFish.Models.ApplicationUser
-
-@if (User.Identity.IsAuthenticated)
-{
-  <h2>Account Details</h2>
-  <p>@User.Identity.Name</p>
-  <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="rounded-circle" alt="Default profile image." height="200">
-  <p><a href='@Url.Action("Edit", "Account")'>Customize Account</a></p>
-  <p><a href='@Url.Action("Delete", "Account")'>Delete Account</a></p>
-  @using (Html.BeginForm("LogOff", "Account"))
+<div class="container">
+  @if (User.Identity.IsAuthenticated)
   {
-    <button type="submit" class="btn btn-block dropdown-item text-danger">Log out</button>
+    <h2>Account Details</h2>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="text-center">Hello @Model.FirstName @Model.LastName!</h5>
+        <hr>
+        <div class="row">
+          <!-- Profile details section -->
+          <div class="col-md-9">
+            <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="rounded-circle mx-auto d-block" alt="Default profile image." height="200">
+            <p><strong>Full Name:</strong> @Model.FirstName @Model.LastName</p>
+            <p><strong>@Html.DisplayNameFor(model => model.Age):</strong> @Model.Age</p>
+            <p><strong>@Html.DisplayNameFor(model => model.Bio):</strong> @Model.Bio</p>
+            <p><strong>@Html.DisplayNameFor(model => model.About):</strong> @Model.About</p>
+            <p><strong>@Html.DisplayNameFor(model => model.Species):</strong> @Model.Species</p>
+            <p><strong>@Html.DisplayNameFor(model => model.Breed):</strong> @Model.Breed</p>
+          </div>
+          <!-- Profile Buttons section -->
+          <div class="col-md-3">
+            <p><a href='@Url.Action("Edit", "Account")'><button class="btn btn-primary w-100">Customize Account</button></a></p>
+            <p><a href='@Url.Action("Delete", "Account")'><button class="btn btn-primary w-100">Delete Account</button></a></p>
+            @using (Html.BeginForm("LogOff", "Account"))
+            {
+              <input type="submit" value="Log out" class="btn btn-primary w-100">
+            }
+          </div>
+        </div>
+      </div>
+    </div>
   }
-}
-else
-{
-  <h2>Account</h2>
-  <a href='@Url.Action("Register", "Account")'>Register new account</a>
-  <a href='@Url.Action("Login", "Account")'>Login</a>
-}
+  else
+  {
+    <h2>Account</h2>
+    <a href='@Url.Action("Register", "Account")'>Register new account</a>
+    <a href='@Url.Action("Login", "Account")'>Login</a>
+  }
+</div>
