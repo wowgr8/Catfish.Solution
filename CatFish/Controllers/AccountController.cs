@@ -137,5 +137,27 @@ namespace CatFish.Controllers
         //     }
         //     return null;
         // }
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteUser()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return View();
+            }
+            else
+            {
+                await _signInManager.SignOutAsync();
+                await _userManager.DeleteAsync(user);
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }
