@@ -28,10 +28,10 @@
           else
           {
             <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200">
+            <p class="text-center">@Model.Bio</p>
           }
           <p><strong>Full Name:</strong> @Model.FirstName @Model.LastName</p>
           <p><strong>@Html.DisplayNameFor(model => model.Age):</strong> @Model.Age</p>
-          <p><strong>@Html.DisplayNameFor(model => model.Bio):</strong> @Model.Bio</p>
           <p><strong>@Html.DisplayNameFor(model => model.About):</strong> @Model.About</p>
           <p><strong>@Html.DisplayNameFor(model => model.Species):</strong> @Model.Species</p>
           <p><strong>@Html.DisplayNameFor(model => model.Breed):</strong> @Model.Breed</p>
