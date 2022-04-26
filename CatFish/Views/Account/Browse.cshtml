@@ -6,15 +6,38 @@
 
 @model IEnumerable<ApplicationUser>
 
-<h2>Users</h2>
-@if (Model.Any())
-{
-  @foreach (var user in Model)
-  {
-    <p>@user.FirstName</p>
-  }
-}
-else
-{
-  <p>No Users Yet.</p>
-}
+<div class="card col-md-5 mx-auto text-center">
+  <div class="card-body">
+    <h2>CatFish</h2>
+    <p>Swipe and see who you matched with!</p>
+    <hr>
+    <div class="card col-md-10 mx-auto text-center">
+      @if (Model.Any())
+      {
+        @foreach (var user in Model)
+        {
+          <p>@user.FirstName</p>
+          /* add image once: ApplicationUser contain a public instance or extension definition for 'GetEnumerator'*/
+          /* <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200"> */
+          <p>@user.About</p>
+          <p>@user.Age</p>
+          <p>@user.Species </p>        
+          <p>@user.Breed</p>         
+        }
+      }
+      else
+      {
+        <p>No Users Yet.</p>
+      }
+      <div class="card-footer">
+        <p class="left-button">
+          <!-- swipe left button -->
+        </p>
+        <p class="right-button">
+          <!-- swipe right button -->
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
