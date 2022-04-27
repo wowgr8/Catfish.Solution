@@ -16,8 +16,9 @@
     {
       <div class="col">
         <div class="card">
-          <div class="card-header">@user.FirstName</div>
-            <div class="card-body text-success">
+          <div class="card-header text-center">@user.FirstName</div>
+            <div class="card-body text-center">
+              <img src='@Url.Content("~/img/ProfilePictures/" + user.ImageName)' alt="Default profile image.">
               <h5 class="card-title">@user.About</h5>
               <p class="card-text">
                 @user.Age
