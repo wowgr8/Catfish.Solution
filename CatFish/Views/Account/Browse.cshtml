@@ -18,16 +18,12 @@
         {
           <p>@user.FirstName</p>
           <img src='@Url.Content("~/img/ProfilePictures/" + user.ImageName)' alt="Default profile image.">
-          /* add image once: ApplicationUser contain a public instance or extension definition for 'GetEnumerator'*/
-          /* <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200"> */
           <p>@user.About</p>
           <ul class="list-group list-group-horizontal mx-100% text-left">
             <li class="list-group-item">@user.Age</li>
             <li class="list-group-item">@user.Species</li>
             <li class="list-group-item">@user.Breed</li>
           </ul>
-
-          /* <p>@user.Age</p> <p>|</p> <p>@user.Species</p> <p>|</p> <p>@user.Breed</p>         */
         }
       }
       else
