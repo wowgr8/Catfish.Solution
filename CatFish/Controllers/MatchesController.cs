@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using CatFish.Models;
-using System.Threading.Tasks;
-using System;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using CatFish.ViewModels;
 using System.Security.Claims;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -80,7 +76,5 @@ namespace CatFish.Controllers
         return RedirectToAction("Browse");
       }
     }
-
-
   }
 }
