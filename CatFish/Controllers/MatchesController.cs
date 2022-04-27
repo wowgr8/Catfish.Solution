@@ -9,6 +9,7 @@ using CatFish.ViewModels;
 using System.Security.Claims;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace CatFish.Controllers
 {
@@ -24,10 +25,37 @@ namespace CatFish.Controllers
       _db = db;
     }
 
+    public ActionResult Index()
+    {
+      var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // Grab list of confirmed matches
+      List<Match> confirmedMatches = _db.Matches
+        .Where(entry => entry.User1Id == currentUser || entry.User2Id == currentUser)
+        .Where(entry => entry.User1Response == 1 && entry.User2Response == 1)
+        .ToList();
+      // Extract match id's for other user
+      List<string> matchIds = new List<string>();
+      foreach (Match match in confirmedMatches)
+      {
+        if (match.User1Id == currentUser)
+        {
+          matchIds.Add(match.User2Id);
+        }
+        else
+        {
+          matchIds.Add(match.User1Id);
+        }
+      }
+      // Build list of users to send to view
+      var users = _userManager.Users.Where(entry => matchIds.Contains(entry.Id));
+      return View(users);
+    }
+
     public ActionResult Browse()
     {
-        var users = _userManager.Users;
-        return View(users);
+      var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var users = _userManager.Users.Where(entry => entry.Id != currentUser);
+      return View(users);
     }
     
     [HttpPost]
@@ -52,5 +80,7 @@ namespace CatFish.Controllers
         return RedirectToAction("Browse");
       }
     }
+
+
   }
 }
