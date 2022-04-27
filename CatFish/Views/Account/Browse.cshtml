@@ -18,7 +18,7 @@
           <h2>@user.FirstName</h2>
           <img src='@Url.Content("~/img/ProfilePictures/" + user.ImageName)' alt="Default profile image.">
           <h3>@user.About</h3>
-          <ul class="list-group list-group-horizontal mx-100% text-right">
+          <ul class="list-group list-group-horizontal d-flex justify-content-center mx-100%">
             <li class="list-group-item">@user.Age</li>
             <li class="list-group-item">@user.Species</li>
             <li class="list-group-item">@user.Breed</li>
@@ -30,10 +30,10 @@
         <p>No Users Yet.</p>
       }
       </div>
-      <div class="row g-0">
+      <div class="row g-0 d-flex justify-content-center">
         <div class="col-sm-6">
           <div class="card">
-            <div class="card">
+            <div class="card ">
               <button type="submit" class="btn btn-danger">Left :(</a>
             </div>
           </div>
