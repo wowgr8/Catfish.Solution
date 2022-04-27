@@ -17,26 +17,37 @@
         @foreach (var user in Model)
         {
           <p>@user.FirstName</p>
+          <img src='@Url.Content("~/img/ProfilePictures/" + user.ImageName)' alt="Default profile image.">
           /* add image once: ApplicationUser contain a public instance or extension definition for 'GetEnumerator'*/
           /* <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' class="img-thumbnail rounded-circle h-25 mx-auto d-block" alt="Default profile image." height="200"> */
           <p>@user.About</p>
-          <p>@user.Age</p>
-          <p>@user.Species </p>        
-          <p>@user.Breed</p>         
+          <ul class="list-group list-group-horizontal mx-100% text-left">
+            <li class="list-group-item">@user.Age</li>
+            <li class="list-group-item">@user.Species</li>
+            <li class="list-group-item">@user.Breed</li>
+          </ul>
+
+          /* <p>@user.Age</p> <p>|</p> <p>@user.Species</p> <p>|</p> <p>@user.Breed</p>         */
         }
       }
       else
       {
         <p>No Users Yet.</p>
       }
-      <div class="card-footer">
-        <p class="left-button">
-          <!-- swipe left button -->
-        </p>
-        <p class="right-button">
-          <!-- swipe right button -->
-        </p>
-
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card">
+              <button type="submit" class="btn btn-danger">Left :(</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <button type="submit" class="btn btn-success">Right ;)</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
