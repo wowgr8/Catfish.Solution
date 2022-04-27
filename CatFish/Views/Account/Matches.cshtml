@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@using CatFish.Models
+
+@model IEnumerable<ApplicationUser>
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-center"> 
+    <h1 id="title" style="font-size:10vw">Matches</h1>
+  </div>
+
+  <div class="row row-cols-2 row-cols-md-2 g-4">
+    @foreach (var user in Model)
+    {
+      <div class="col">
+        <div class="card">
+          <div class="card-header">@user.FirstName</div>
+            <div class="card-body text-success">
+              <h5 class="card-title">@user.About</h5>
+              <p class="card-text">
+                @user.Age
+                @user.Species
+                @user.Breed
+              </p>
+            </div>
+        </div>
+      </div>
+    }
+  </div> 
+</div>
