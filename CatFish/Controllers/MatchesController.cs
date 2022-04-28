@@ -50,8 +50,16 @@ namespace CatFish.Controllers
     public ActionResult Browse()
     {
       var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var users = _userManager.Users.Where(entry => entry.Id != currentUser);
-      return View(users);
+      List<Match> matches = _db.Matches.Where(entry => entry.User1Id == currentUser).ToList();
+      List<string> matchIds = new List<string>();
+      foreach (Match match in matches)
+      {
+        matchIds.Add(match.User2Id);
+      }
+      var userList = _userManager.Users
+        .Where(entry => !matchIds.Contains(entry.Id))
+        .Where(entry => entry.Id != currentUser);
+      return View(userList);
     }
     
     [HttpPost]
