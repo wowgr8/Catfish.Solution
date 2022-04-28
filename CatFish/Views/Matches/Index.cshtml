@@ -14,16 +14,18 @@
   <div class="row row-cols-1 row-cols-md-4 g-4">        
     @foreach (var user in Model)
       {
-        <div class="col scroll">
-          <div class="card h-100 overflow-auto">
+        <div class="col">
+          <div class="card h-100">
             <img src='@Url.Content("~/img/ProfilePictures/" + user.ImageName)' class="card-img-top" alt="Default profile image.">
             <div class="card-body">
               <h5 class="card-title">@user.FirstName</h5>
               <hr>
-              <p class="card-text">About:  @user.About</p>
-              <p class="card-text">Age: @user.Age</p>
-              <p class="card-text">Species: @user.Species</p>
-              <p class="card-text"> Breed: @user.Breed</p>
+              <div class="scrollable">
+                <p class="card-text">About:  @user.About</p>
+                <p class="card-text">Age: @user.Age</p>
+                <p class="card-text">Species: @user.Species</p>
+                <p class="card-text"> Breed: @user.Breed</p>
+              </div>
             </div>
           </div>
         </div>

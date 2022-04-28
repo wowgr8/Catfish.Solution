@@ -11,3 +11,8 @@
 .card:hover {
   box-shadow: 0 14px 20px 0 rgba(0,0,0,0.2);
 }
+
+.scrollable{
+  overflow-y: auto;
+  max-height: 200px;
+}
