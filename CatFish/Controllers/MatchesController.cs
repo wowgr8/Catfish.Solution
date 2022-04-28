@@ -50,12 +50,24 @@ namespace CatFish.Controllers
 
     public ActionResult Browse()
     {
+      //TODO Handle when current user is user2id 
       var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      List<Match> matches = _db.Matches.Where(entry => entry.User1Id == currentUser).ToList();
+      List<Match> matches = _db.Matches.ToList();
       List<string> matchIds = new List<string>();
       foreach (Match match in matches)
       {
-        matchIds.Add(match.User2Id);
+        if (match.User1Id == currentUser)
+        {
+          matchIds.Add(match.User2Id);
+        }
+        if (match.User2Id == currentUser && match.User2Response == 1 )
+        {
+          matchIds.Add(match.User1Id);
+        }
+        if (match.User2Id == currentUser && match.User2Response == 0 )
+        {
+          matchIds.Add(match.User1Id);
+        }
       }
       var userList = _userManager.Users
         .Where(entry => !matchIds.Contains(entry.Id))
