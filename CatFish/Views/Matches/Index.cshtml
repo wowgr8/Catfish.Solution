@@ -8,25 +8,25 @@
 
 <div class="container-fluid">
   <div class="d-flex justify-content-center"> 
-    <h1 id="title" style="font-size:10vw">Matches</h1>
+    <h2 id="title" style="font-size:10vw">Matches</h2>
   </div>
 
-  <div class="row row-cols-2 row-cols-md-2 g-4">
+  <div class="row row-cols-1 row-cols-md-4 g-4">        
     @foreach (var user in Model)
-    {
-      <div class="col">
-        <div class="card">
-          <div class="card-header">@user.FirstName</div>
-            <div class="card-body text-success">
-              <h5 class="card-title">@user.About</h5>
-              <p class="card-text">
-                @user.Age
-                @user.Species
-                @user.Breed
-              </p>
+      {
+        <div class="col scroll">
+          <div class="card h-100 overflow-auto">
+            <img src='@Url.Content("~/img/ProfilePictures/" + user.ImageName)' class="card-img-top" alt="Default profile image.">
+            <div class="card-body">
+              <h5 class="card-title">@user.FirstName</h5>
+              <hr>
+              <p class="card-text">About:  @user.About</p>
+              <p class="card-text">Age: @user.Age</p>
+              <p class="card-text">Species: @user.Species</p>
+              <p class="card-text"> Breed: @user.Breed</p>
             </div>
+          </div>
         </div>
-      </div>
-    }
-  </div> 
+      }
+    </div> 
 </div>

@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using CatFish.Models;
-using System.Threading.Tasks;
-using System;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using CatFish.ViewModels;
 using System.Security.Claims;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace CatFish.Controllers
 {
@@ -23,11 +22,68 @@ namespace CatFish.Controllers
       _db = db;
     }
 
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
+    {
+      var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // Grab list of confirmed matches
+      List<Match> confirmedMatches = _db.Matches
+        .Where(entry => entry.User1Id == currentUser || entry.User2Id == currentUser)
+        .Where(entry => entry.User1Response == 1 && entry.User2Response == 1)
+        .ToList();
+      // Extract match id's for other user
+      List<string> matchIds = new List<string>();
+      foreach (Match match in confirmedMatches)
+      {
+        if (match.User1Id == currentUser)
+        {
+          matchIds.Add(match.User2Id);
+        }
+        else
+        {
+          matchIds.Add(match.User1Id);
+        }
+      }
+      // Build list of users to send to view
+      var users = _userManager.Users.Where(entry => matchIds.Contains(entry.Id));
+      return View(users);
+    }
+
+    public ActionResult Browse()
+    {
+      var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      List<Match> matches = _db.Matches.Where(entry => entry.User1Id == currentUser).ToList();
+      List<string> matchIds = new List<string>();
+      foreach (Match match in matches)
+      {
+        matchIds.Add(match.User2Id);
+      }
+      var userList = _userManager.Users
+        .Where(entry => !matchIds.Contains(entry.Id))
+        .Where(entry => entry.Id != currentUser);
+      return View(userList);
+    }
+    
+    [HttpPost]
+    public ActionResult Create(int responseValue, string id)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      return View(currentUser);
+      bool result = _db.Matches.Any(entry => entry.User1Id == id && entry.User2Id == userId);
+
+      if(!result)
+      {
+        Match newMatch = new Match{ User1Id = userId, User2Id = id, User1Response = responseValue, User2Response = 2 };
+        _db.Matches.Add(newMatch);
+        _db.SaveChanges();
+        return RedirectToAction("Browse");
+      }
+      else
+      {
+        Match foundMatch = _db.Matches.FirstOrDefault(entry => entry.User1Id == id && entry.User2Id == userId);
+        foundMatch.User2Response = responseValue;
+        _db.Entry(foundMatch).State = EntityState.Modified;
+        _db.SaveChanges();
+        return RedirectToAction("Browse");
+      }
     }
   }
-}        
+}

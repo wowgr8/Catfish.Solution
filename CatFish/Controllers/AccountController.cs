@@ -32,17 +32,6 @@ namespace CatFish.Controllers
             return View(currentUser);
         }
 
-        public ActionResult Browse()
-        {
-            var users = _userManager.Users;
-            return View(users);
-        }
-        public ActionResult Matches()
-        {
-            var users = _userManager.Users;
-            return View(users);
-        }
-
         public IActionResult Register()
         {
             return View();

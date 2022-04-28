@@ -3,14 +3,16 @@ using System;
 using CatFish.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CatFish.Migrations
 {
     [DbContext(typeof(CatFishContext))]
-    partial class CatFishContextModelSnapshot : ModelSnapshot
+    [Migration("20220426035216_ChangeReponse")]
+    partial class ChangeReponse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
