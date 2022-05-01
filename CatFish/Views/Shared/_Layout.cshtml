@@ -1,3 +1,18 @@
+@using Microsoft.AspNetCore.Identity
+@using CatFish.Models
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+@{
+  string ProfilePicture = null;
+  if (signInManager.IsSignedIn(User))
+  {
+    Task<ApplicationUser> GetCurrentUserAsync() => userManager.GetUserAsync(User);
+    var user = await GetCurrentUserAsync();
+    ProfilePicture = user.ImageName; 
+  }
+}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +24,92 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="height:120px;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="../../"><img src="~/img/Logo1.png" style="height:110px; d-flex"></a>
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class='nav-link' href='@Url.Action("Index", "Home")'>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='@Url.Action("Browse", "Matches")'>Browse</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href='@Url.Action("Index", "Matches")'>Matches</a>
+            </li>
+          </ul>
+          <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+
+          <!-- Avatar -->
+          <div class="dropdown">
+            @if (User.Identity.IsAuthenticated)
+            {
+              if (ProfilePicture != null)
+              {
+                <a class='nav-link data-toggle' data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                  <button class="btn btn-secondary">
+                    <img src='@Url.Content("~/img/ProfilePictures/" + ProfilePicture)' id="navbar-pfp" class="rounded" alt="Default profile image." height="40">
+                  </button>
+                </a>
+              }
+              else
+              {
+                <a class='nav-link data-toggle' data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                  <button class="btn btn-secondary">
+                    <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." height="30">
+                  </button>
+                </a>
+              }
+            }
+            else
+            {
+              <a class='nav-link data-toggle' data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                <button class="btn btn-secondary">Account</button>
+              </a>
+            }
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+              @if (User.Identity.IsAuthenticated)
+              {
+                <li><a class="dropdown-item" href='@Url.Action("Index", "Account")'>My account</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  @using (Html.BeginForm("LogOff", "Account"))
+                  {
+                    <button type="submit" class="btn btn-block dropdown-item text-white">Log out</button>
+                  }
+                </li>
+              }
+              else
+              {
+                <li><a class="dropdown-item" href='@Url.Action("Register", "Account")'>Register account</a></li>
+                <li><a class="dropdown-item" href='@Url.Action("Login", "Account")'>Login</a></li>
+              }
+            </ul>
+          </div>
+        </div>
+        <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    @* <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="height:120px;">
       <div class="container-fluid">
         <a class="navbar-brand" href="../../"><img src="~/img/Logo1.png" style="height:110px; d-flex"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="height:80px;">
@@ -34,7 +134,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> *@
     <div class="container my-3">
       @RenderBody()
     </div>

@@ -50,7 +50,6 @@ namespace CatFish.Controllers
 
     public ActionResult Browse()
     {
-      //TODO Handle when current user is user2id 
       var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       List<Match> matches = _db.Matches.ToList();
       List<string> matchIds = new List<string>();
@@ -72,7 +71,15 @@ namespace CatFish.Controllers
       var userList = _userManager.Users
         .Where(entry => !matchIds.Contains(entry.Id))
         .Where(entry => entry.Id != currentUser);
-      return View(userList);
+      List<ApplicationUser> newUserList = userList.ToList();
+      if (newUserList.Count < 1)
+      {
+        return View(null);
+      }
+      else
+      {
+        return View(newUserList[0]);
+      }
     }
     
     [HttpPost]
