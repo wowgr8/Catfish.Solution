@@ -6,19 +6,54 @@
 
 @model CatFish.Models.ApplicationUser
 
-<h2>Users</h2>
-@if (Model != null)
-{
-  @using (Html.BeginForm("Create", "Matches"))
-  {
-    <p>@Model.FirstName</p>
-    <p>@Model.Id</p>
-    @Html.Hidden("id", @Model.Id)
-    <button type="submit" class="btn btn-outline-danger" name="responseValue" value="0">No Match</button>
-    <button type="submit" class="btn btn-outline-success" name="responseValue" value="1">Match</button>
-  }
-}
-else
-{
-  <p>No other users to show.</p>
-}
+
+
+
+
+<div class="card col-md-5 mx-auto text-center">
+  <div class="card-body">
+    <h2>Swipe and see who you matched with!</h2>
+    <hr>
+    <div class="card col-md-10 mx-auto text-center">
+      @if (Model != null)
+      {
+        @using (Html.BeginForm("Create", "Matches"))
+        {
+          <h3>@Model.FirstName</h3>
+          @Html.Hidden("id", @Model.Id)
+          <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' alt="Default profile image." style="height:auto; width:auto">
+          <h3>@Model.About</h3>
+          <ul class="list-group list-group-horizontal d-flex justify-content-center mx-100%">
+            <li class="list-group-item">@Model.Age</li>
+            <li class="list-group-item">@Model.Species</li>
+            <li class="list-group-item">@Model.Breed</li>
+          </ul>
+          <div class="row g-0 d-flex justify-content-center">
+          <button type="submit" class="btn btn-danger col-sm-6" name="responseValue" value="0">Left :(</button>
+          <button type="submit" class="btn btn-success col-sm-6" name="responseValue" value="1">Right ;)</button>
+          </div>
+        }
+      }
+      else
+      {
+        <p>No other users to show.</p>
+      }
+      
+      <!-- <div class="row g-0 d-flex justify-content-center">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card ">
+              <button type="submit" class="btn btn-danger" name="responseValue" value="0">Left :(</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <button type="submit" class="btn btn-success" name="responseValue" value="1">Right ;)</button>
+          </div>
+        </div>
+      </div>  -->
+      
+    </div>
+  </div>
+</div>
