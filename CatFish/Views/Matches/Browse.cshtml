@@ -21,11 +21,11 @@
           @Html.Hidden("id", @Model.Id)
           if (@Model.ImageName != null)
             {
-              <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' alt="Default profile image." class="rounded" height="300">
+              <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' alt="Default profile image." class="rounded img-fluid" height="300">
             }
             else
             {
-              <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." height="300">
+              <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." class="rounded img-fluid" height="300">
             }
           <h3>@Model.About</h3>
           <ul class="list-group list-group-horizontal d-flex justify-content-center mx-100%">
