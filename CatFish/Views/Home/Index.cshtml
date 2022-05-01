@@ -2,7 +2,31 @@
   Layout = "_Layout";
 }
 
-<div class="row">
+@model CatFish.Models.ApplicationUser
+
+
+@if (User.Identity.IsAuthenticated)
+{
+  <div class="row">
+  <div class="col-md-4">
+    <h1 class="text-center">CatFish</h1>
+    <div class="card text-center">
+      <div class="card-body h-100">
+        <h4 class="card-title"><b>Welcome to CatFish</b></h4>
+        <p>It is good to see you here, @Model.FirstName! </p>
+        <a href='@Url.Action("Browse", "Matches")'>Start swiping!</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <img src="~/img/dog.png" class="img-fluid mx-auto d-block ">
+  </div>
+</div>
+
+}
+else
+{
+  <div class="row">
   <div class="col-md-4">
     <h1 class="text-center">CatFish</h1>
     <div class="card text-center">
@@ -17,4 +41,5 @@
   <div class="col-md-8">
     <img src="~/img/dog.png" class="img-fluid mx-auto d-block ">
   </div>
-</div>
+  </div>
+}
