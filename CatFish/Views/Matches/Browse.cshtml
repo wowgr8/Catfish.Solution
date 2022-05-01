@@ -5,7 +5,13 @@
 @using CatFish.Models
 
 @model CatFish.Models.ApplicationUser
-
+@* @if(TempData["success"] != null)
+{
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script type="text/javascript">
+    toastr.success('@TempData["success"]');
+  </script>
+} *@
 <h2>Users</h2>
 @if (Model != null)
 {
@@ -15,7 +21,7 @@
     <p>@Model.Id</p>
     @Html.Hidden("id", @Model.Id)
     <button type="submit" class="btn btn-outline-danger" name="responseValue" value="0">No Match</button>
-    <button type="submit" class="btn btn-outline-success" name="responseValue" value="1">Match</button>
+    <button type="submit" id="myBtn" class="btn btn-outline-success" name="responseValue" value="1">Match</button>
   }
 }
 else

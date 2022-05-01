@@ -112,6 +112,7 @@ namespace CatFish.Controllers
         foundMatch.User2Response = responseValue;
         _db.Entry(foundMatch).State = EntityState.Modified;
         _db.SaveChanges();
+        TempData["success"] = "You matched with someone!";
         return RedirectToAction("Browse");
       }
     }
