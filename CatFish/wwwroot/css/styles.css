@@ -16,3 +16,7 @@
   overflow-y: auto;
   max-height: 200px;
 }
+
+#darktext {
+  color:rgb(96, 94, 94);
+}
