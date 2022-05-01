@@ -51,34 +51,45 @@ namespace CatFish.Controllers
     public ActionResult Browse()
     {
       var currentUser = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // Create matches list from database of all matches and order by if other user has made a match with current user
       List<Match> matches = _db.Matches.ToList();
-      List<string> matchIds = new List<string>();
+      List<string> matchedFromOtherUser = new List<string>();
+      List<string> completedMatches = new List<string>();
+      // Filters users into two lists used to filter final created user list
       foreach (Match match in matches)
       {
+        // Adds to matchedFromOtherUser if other user has made a match with the current user before to sort the final list
+        if (match.User1Response == 1 && match.User1Id != currentUser && match.User2Id == currentUser)
+        {
+          matchedFromOtherUser.Add(match.User1Id);
+        }
+        // Adds to completedMatches which are filtered out of the final user list
         if (match.User1Id == currentUser)
         {
-          matchIds.Add(match.User2Id);
+          completedMatches.Add(match.User2Id);
         }
         if (match.User2Id == currentUser && match.User2Response == 1 )
         {
-          matchIds.Add(match.User1Id);
+          completedMatches.Add(match.User1Id);
         }
         if (match.User2Id == currentUser && match.User2Response == 0 )
         {
-          matchIds.Add(match.User1Id);
+          completedMatches.Add(match.User1Id);
         }
       }
-      var userList = _userManager.Users
-        .Where(entry => !matchIds.Contains(entry.Id))
-        .Where(entry => entry.Id != currentUser);
-      List<ApplicationUser> newUserList = userList.ToList();
-      if (newUserList.Count < 1)
+      // Creates final user list and orders them by people who have already matched with current user
+      List<ApplicationUser> userList = _userManager.Users
+        .Where(entry => !completedMatches.Contains(entry.Id))
+        .Where(entry => entry.Id != currentUser)
+        .OrderByDescending(entry => matchedFromOtherUser.Contains(entry.Id))
+        .ToList();
+      if (userList.Count < 1)
       {
         return View(null);
       }
       else
       {
-        return View(newUserList[0]);
+        return View(userList[0]);
       }
     }
     
