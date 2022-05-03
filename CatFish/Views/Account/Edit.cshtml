@@ -39,7 +39,15 @@
         @Html.LabelFor(model => model.Breed, new { @class = "form-label"})
         @Html.TextBoxFor(model => model.Breed, new { @class = "form-control", required="required"})
       </div>
-      <div class="mb-3 col-md-12">
+      <div class="mb-3 col-md-6">
+        @Html.Label("Gender", null, new { @class = "form-label"})
+        <select id="Gender" class="form-select" name="Gender" required>
+          <option value="" selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div class="mb-3 col-md-6">
         @Html.Label("Upload Profile Image", null, new { @class = "form-label"})
         @Html.TextBoxFor(model => model.ImageFile, new { @class = "form-control", type="file", accept="image/*"})
       </div>
