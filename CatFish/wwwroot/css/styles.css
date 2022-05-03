@@ -20,3 +20,6 @@
 #darktext {
   color:rgb(96, 94, 94);
 }
+body {
+  overflow-x: hidden;
+}
