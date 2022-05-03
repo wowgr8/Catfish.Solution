@@ -8,7 +8,7 @@ namespace CatFish.Models
     public string User2Id { get; set; }
     public int User1Response { get; set; }
     public int User2Response { get; set; }
-
+    public bool Unmatched { get; set; }
     public virtual ApplicationUser ApplicationUser { get; set; }
   }
 }
