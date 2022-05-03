@@ -2,7 +2,7 @@
 
 #### By _**Cesar Lopez, Ebru Rice, Jack Skelton, Marni Sucher, Patrick Dolan**_
 
-#### _A web application for matching pets through a tinder like system._
+#### _A web application for pets to find other pets to play with._
 
 ## Technologies Used
 
@@ -10,10 +10,13 @@
 * .NET 5.0
 * dotnet
 * MySql/Workbench
+* Bootstrap 5
+* JQuery 3.6.0
+* Animate.css
 
 ## Description
 
-A web application for matching pets through a tinder like system.
+A web application for pets to find other pets to play with. You can create a user account and add, and edit account information, and delete your entire account if you so choose. Checking the browse page will allow you to find new people to match with and if the other user you try to match with wants to match with you they will be added to the matches page.  
 
 ## Setup/Installation Requirements
 
@@ -36,7 +39,7 @@ Example of complete appsettings.json:
 ```
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=to_do_list;uid=root;pwd=MySuperStrongPassword;"
+    "DefaultConnection": "Server=localhost;Port=3306;database=catfish;uid=root;pwd=MySuperStrongPassword;"
   }
 }
 
@@ -48,18 +51,14 @@ Example of complete appsettings.json:
 * Now using your IDE in the CatFish.Solution/CatFish/ folder use the command <code>dotnet run</code> to launch the program. 
 * The site should be available at the server address you used in the <code>appsettings.json</code> folder.
 
-### Test Setup/Installation
-
-* Open the repo on your editor of choice/terminal
-* Navigate to CatFish.Tests directory in your terminal
-* Run the following command to setup testing:  
-<code>dotnet restore</code>  
-* Run tests by going to the test project in the terminal (CatFish.Solution/CatFish.Tests) and running the following command:  
-<code>dotnet test</code>  
-
-<code>dotnet ef migrations add Initial</code>
-
 * Make sure to change the Identity services configuration to make passwords more secure as the current settings are in place to make development easier but are not good settings for secure passwords
+
+<!-- ## Schema
+Intial Schema<br>
+![Initial Schema](https://github.com/Patrick-Dolan/PierresMarket.Solution/blob/main/DemoGifs/BasicFunctionality.gif)
+
+Final Schema<br>
+![Final Schema](https://github.com/Patrick-Dolan/PierresMarket.Solution/blob/main/DemoGifs/BasicFunctionality.gif) -->
 
 ## Known Bugs
 
