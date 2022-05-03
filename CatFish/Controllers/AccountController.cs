@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using CatFish.Models;
 using System.Threading.Tasks;
 using System;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 
 namespace CatFish.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly CatFishContext _db;
@@ -32,11 +34,13 @@ namespace CatFish.Controllers
             return View(currentUser);
         }
 
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -68,11 +72,13 @@ namespace CatFish.Controllers
             }
         }
         
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {

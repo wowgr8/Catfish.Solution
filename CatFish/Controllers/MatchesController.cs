@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using CatFish.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.Security.Claims;
@@ -9,6 +10,8 @@ using System.Collections.Generic;
 
 namespace CatFish.Controllers
 {
+
+  [Authorize]
   public class MatchesController : Controller
   {
     private readonly CatFishContext _db;
