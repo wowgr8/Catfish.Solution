@@ -24,7 +24,7 @@
               <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." class="rounded img-fluid" height="300">
             }
             <div class="card-body">
-              <h5 class="card-title">@user.FirstName</h5>
+              <h5 class="card-title">@user.FirstName @user.LastName</h5>
               <hr>
               <div class="scrollable">
                 <p class="card-text">Email: @user.UserName</p>
@@ -37,7 +37,7 @@
               @using (Html.BeginForm("Unmatch", "Matches"))
               {
                 <input type="hidden" name="id" id="id" value='@(user.Id)'>
-                <button type="submit" class="btn btn-danger w-100">Unmatch</button>
+                <button type="submit" class="btn btn-danger w-100 mt-2">Unmatch</button>
               }
             </div>
           </div>
