@@ -16,7 +16,7 @@
       {
         <div class="col">
           <div class="card h-100">
-            if (@user.ImageName != null)
+            @if (user.ImageName != null)
               {
                 <img src='@Url.Content("~/img/ProfilePictures/" + @user.ImageName)' alt="Default profile image." class="rounded img-fluid" height="300">
               }
