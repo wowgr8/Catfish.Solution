@@ -7,12 +7,11 @@
 @model IEnumerable<ApplicationUser>
 
 <div class="container-fluid">
-  <div class="d-flex justify-content-center"> 
-    <h2 id="title" style="font-size:10vw">Matches</h2>
-  </div>
-
-  <div class="row row-cols-1 row-cols-md-2 g-4">        
-    @foreach (var user in Model)
+  <h2 class="text-center">Matches</h2>
+  @if(Model.Any())
+  {
+    <div class="row row-cols-1 row-cols-md-2 g-4">        
+      @foreach (var user in Model)
       {
         <div class="col">
           <div class="card h-100">
@@ -40,4 +39,12 @@
         </div>
       }
     </div> 
+  }
+  else
+  {
+    <div class="text-center">
+      <h4>You haven't matched with anyone yet.</h4>
+      <a href='@Url.Action("Browse", "Matches")'><button class="btn btn-primary btn-lg">Click here to find someone to match with!</button></a>
+    </div>
+  }
 </div>
