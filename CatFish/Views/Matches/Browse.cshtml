@@ -8,42 +8,53 @@
 
 
 
-<div class="card col-md-10 mx-auto text-center">
+<div class="card col-md-10 mx-auto text-center ">
   <div class="card-body">
-    <h2>Swipe and see who you matched with!</h2>
+    <h2>Meet your next best friend!</h2>
     <hr>
-    <div class="card col-md-10 mx-auto text-center">
+    <div class="card col-md-11 mx-auto text-center animate__animated animate__fadeIn" id="profile-card">
       @if (Model != null)
       {
-        @using (Html.BeginForm("Create", "Matches"))
-        {
-          <h3>@Model.FirstName</h3>
-          @Html.Hidden("id", @Model.Id)
-          if (@Model.ImageName != null)
+        <h3 class="mt-2">@Model.FirstName</h3>
+        if (@Model.ImageName != null)
+          {
+            <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' alt="Default profile image." class="rounded img-fluid" height="300">
+          }
+          else
+          {
+            <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." class="rounded img-fluid" height="300">
+          }
+        <div class="col-md-12">
+          <ul class="list-group list-group-horizontal d-flex justify-content-center mx-100%">
+            <li id="darktext" class="list-group-item">Age: @Model.Age</li>
+            <li id="darktext" class="list-group-item">Species: @Model.Species</li>
+            <li id="darktext" class="list-group-item">Breed: @Model.Breed</li>
+            <li id="darktext" class="list-group-item">Gender: @Model.Gender</li>
+          </ul>
+        </div>
+        <div class="col-md-12 scrollable">
+          <h5>About</h5>
+          <p>@Model.About</p>
+        </div>
+        <div class="row g-0 d-flex justify-content-center">
+          <div class="col-md-6">
+            @using (Html.BeginForm("Create", "Matches", FormMethod.Post, new { id = "leftForm" }))
             {
-              <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' alt="Default profile image." class="rounded img-fluid" height="300">
+              @Html.Hidden("id", @Model.Id)
+              <input type="hidden" id="responseValue" name="responseValue" value="0">
+              <button type="submit" id="swipe-left" class="btn btn-danger w-100">Left :(</button>
             }
-            else
+          </div>
+          <div class="col-md-6">
+            @using (Html.BeginForm("Create", "Matches", FormMethod.Post, new { id = "rightForm" }))
             {
-              <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." class="rounded img-fluid" height="300">
+              @Html.Hidden("id", @Model.Id)
+              <input type="hidden" id="responseValue" name="responseValue" value="1">
+              <button type="submit" id="swipe-right" class="btn btn-success w-100">Right ;)</button>
             }
-          <div class="col-md-12">
-            <ul class="list-group list-group-horizontal d-flex justify-content-center mx-100%">
-              <li id="darktext" class="list-group-item">Age: @Model.Age</li>
-              <li id="darktext" class="list-group-item">Species: @Model.Species</li>
-              <li id="darktext" class="list-group-item">Breed: @Model.Breed</li>
-              <li id="darktext" class="list-group-item">Gender: @Model.Gender</li>
-            </ul>
           </div>
-          <div class="col-md-12 scrollable">
-            <h5>About</h5>
-            <p>@Model.About</p>
-          </div>
-          <div class="row g-0 d-flex justify-content-center">
-          <button type="submit" class="btn btn-danger col-sm-6" name="responseValue" value="0">Left :(</button>
-          <button type="submit" class="btn btn-success col-sm-6" name="responseValue" value="1">Right ;)</button>
-          </div>
-        }
+        </div>
+        <script src="~/js/main.js"></script>
       }
       else
       {
