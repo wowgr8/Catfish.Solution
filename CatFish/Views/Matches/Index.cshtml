@@ -17,21 +17,23 @@
         <div class="col">
           <div class="card h-100">
             @if (user.ImageName != null)
-              {
-                <img src='@Url.Content("~/img/ProfilePictures/" + @user.ImageName)' alt="Default profile image." class="rounded img-fluid" height="300">
-              }
-              else
-              {
-                <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." class="rounded img-fluid" height="300">
-              }
+            {
+              <img src='@Url.Content("~/img/ProfilePictures/" + @user.ImageName)' alt="Default profile image." class="rounded img-fluid" height="300">
+            }
+            else
+            {
+              <img src="~/img/DefaultPFP.png" id="navbar-pfp" class="rounded" alt="Default profile image." class="rounded img-fluid" height="300">
+            }
             <div class="card-body">
               <h5 class="card-title">@user.FirstName</h5>
               <hr>
               <div class="scrollable">
-                <p class="card-text">About:  @user.About</p>
+                <p class="card-text">Email: @user.UserName</p>
                 <p class="card-text">Age: @user.Age</p>
                 <p class="card-text">Species: @user.Species</p>
-                <p class="card-text"> Breed: @user.Breed</p>
+                <p class="card-text">Breed: @user.Breed</p>
+                <p class="card-text">Gender: @user.Gender</p>
+                <p class="card-text">About:  @user.About</p>
               </div>
             </div>
           </div>
