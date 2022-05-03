@@ -53,12 +53,12 @@ Example of complete appsettings.json:
 
 * Make sure to change the Identity services configuration to make passwords more secure as the current settings are in place to make development easier but are not good settings for secure passwords
 
-<!-- ## Schema
+## Schema
 Intial Schema<br>
-![Initial Schema](https://github.com/Patrick-Dolan/PierresMarket.Solution/blob/main/DemoGifs/BasicFunctionality.gif)
+![Initial Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/development/README_IMAGES/InitialDogSchema.PNG)
 
 Final Schema<br>
-![Final Schema](https://github.com/Patrick-Dolan/PierresMarket.Solution/blob/main/DemoGifs/BasicFunctionality.gif) -->
+![Final Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/development/README_IMAGES/FinalDogSchema.PNG)
 
 ## Known Bugs
 
