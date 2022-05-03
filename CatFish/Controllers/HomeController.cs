@@ -2,10 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using CatFish.Models;
 using System.Threading.Tasks;
-using System;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using CatFish.ViewModels;
 using System.Security.Claims;
 
 namespace CatFish.Controllers
@@ -15,14 +11,11 @@ namespace CatFish.Controllers
     private readonly CatFishContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly IWebHostEnvironment _hostEnvironment;
-
-    public HomeController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, CatFishContext db, IWebHostEnvironment hostEnvironment)
+    public HomeController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, CatFishContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;
       _db = db;
-      _hostEnvironment = hostEnvironment;
     }
     public async Task<ActionResult> Index()
     {
