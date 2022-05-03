@@ -17,7 +17,7 @@
   max-height: 200px;
 }
 
-#darktext {
+.darktext {
   color:rgb(96, 94, 94);
   font-size: 80%;
   font-weight: bold;
