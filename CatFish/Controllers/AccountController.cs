@@ -139,6 +139,7 @@ namespace CatFish.Controllers
             currentUser.Age = applicationUser.Age;
             currentUser.Species = applicationUser.Species;
             currentUser.Breed = applicationUser.Breed;
+            currentUser.Gender = applicationUser.Gender;
             if (applicationUser.ImageFile != null)
             {
                 currentUser.ImageName = applicationUser.ImageName;
