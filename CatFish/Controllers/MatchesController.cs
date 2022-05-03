@@ -31,6 +31,7 @@ namespace CatFish.Controllers
       List<Match> confirmedMatches = _db.Matches
         .Where(entry => entry.User1Id == currentUser || entry.User2Id == currentUser)
         .Where(entry => entry.User1Response == 1 && entry.User2Response == 1)
+        .Where(entry => entry.Unmatched == false)
         .ToList();
       // Extract match id's for other user
       List<string> matchIds = new List<string>();
@@ -117,6 +118,17 @@ namespace CatFish.Controllers
         TempData["success"] = "You matched with someone!";
         return RedirectToAction("Browse");
       }
+    }
+
+    [HttpPost]
+    public ActionResult Unmatch(string id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      Match foundMatch = _db.Matches.FirstOrDefault(entry => (entry.User1Id == id && entry.User2Id == userId) || (entry.User1Id == userId && entry.User2Id == id));
+      foundMatch.Unmatched = true;
+      _db.Entry(foundMatch).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
