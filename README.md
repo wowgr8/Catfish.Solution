@@ -55,10 +55,10 @@ Example of complete appsettings.json:
 
 ## Schema
 Intial Schema<br>
-![Initial Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/development/README_IMAGES/InitialDogSchema.PNG)
+![Initial Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/main/README_IMAGES/InitialDogSchema.PNG)
 
 Final Schema<br>
-![Final Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/development/README_IMAGES/FinalDogSchema.PNG)
+![Final Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/main/README_IMAGES/FinalDogSchema.PNG)
 
 ## Known Bugs
 
