@@ -26,3 +26,9 @@
 body {
   overflow-x: hidden;
 }
+
+.card img {
+  max-height: 500px;
+  height: 70%;
+  width: auto;
+}
