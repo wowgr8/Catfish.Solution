@@ -8,10 +8,10 @@
   <div class="card-body">
     <h2>Meet your next best friend!</h2>
     <hr>
-    <div class="card col-md-11 mx-auto text-center animate__animated animate__fadeIn" id="profile-card">
+    <div class="card col-md-10 mx-auto text-center animate__animated animate__fadeIn" id="profile-card">
       @if (Model != null)
       {
-        <h3 class="mt-2">@Model.FirstName</h3>
+        <h3 class="mt-2">@Model.FirstName @Model.LastName</h3>
         if (@Model.ImageName != null)
           {
             <img src='@Url.Content("~/img/ProfilePictures/" + Model.ImageName)' alt="Default profile image." class="rounded img-fluid" height="300">
