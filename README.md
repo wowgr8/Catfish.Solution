@@ -4,7 +4,19 @@
 
 #### _A web application for pets to find other pets to play with._
 
-## Previews
+## Table of Contents
+
+1. [Previews](#previews)
+2. [Technologies Used](#technologies)
+3. [Description](#description)
+4. [Setup/Installation Requirements](#setup)
+5. [Schema](#schema)
+6. [Known Bugs](#bugs)
+7. [Contact Information](#contact)
+8. [License](#license)
+
+
+## Previews <a id="previews"></a>
 Login and browse to find potential play mates: <br>
 ![General Preview](https://github.com/Patrick-Dolan/Catfish.Solution/blob/main/README_IMAGES/Previews/GeneralPreview.gif)  
 
@@ -13,7 +25,7 @@ Swipe left and right to make matches <br>
 Check your matches and contact them through email or unmatch if you dont mesh well <br>
 ![Matches Page](https://github.com/Patrick-Dolan/Catfish.Solution/blob/main/README_IMAGES/Previews/MatchesPage.gif)  
 
-## Technologies Used
+## Technologies Used <a id="technologies"></a>
 
 * C#
 * .NET 5.0
@@ -23,11 +35,11 @@ Check your matches and contact them through email or unmatch if you dont mesh we
 * JQuery 3.6.0
 * Animate.css
 
-## Description
+## Description <a id="description"></a>
 
 A web application for pets to find other pets to play with. You can create a user account and add, and edit account information, and delete your entire account if you so choose. Checking the browse page will allow you to find new people to match with and if the other user you try to match with wants to match with you they will be added to the matches page.  
 
-## Setup/Installation Requirements
+## Setup/Installation Requirements <a id="setup"></a>
 
 * Make sure you have MySql Workbench installed on your computer.
 * Make sure to have dotnet-ef installed too.<br>
@@ -62,24 +74,25 @@ Example of complete appsettings.json:
 
 * Make sure to change the Identity services configuration to make passwords more secure as the current settings are in place to make development easier but are not good settings for secure passwords
 
-## Schema
+## Schema <a id="schema"></a>
 Intial Schema<br>
 ![Initial Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/main/README_IMAGES/InitialDogSchema.PNG)
 
 Final Schema<br>
 ![Final Schema](https://github.com/Patrick-Dolan/Catfish.Solution/blob/main/README_IMAGES/FinalDogSchema.PNG)
 
-## Known Bugs
+## Known Bugs <a id="bugs"></a>
 
 * _No known issues_
-
-## Contact Me
-
-Let me know if you run into any issues or have questions, ideas or concerns:  
-dolanp1992@gmail.com
-
-## License
+  
+## License <a id="license"></a>
 
 _MIT_
 
 Copyright (c) _2022_ _Cesar Lopez, Ebru Rice, Jack Skelton, Marni Sucher, Patrick Dolan_
+
+  
+## Contact Me <a id="contact"></a>
+
+Let me know if you run into any issues or have questions, ideas or concerns:  
+dolanp1992@gmail.com
