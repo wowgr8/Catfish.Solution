@@ -94,5 +94,9 @@ Copyright (c) _2022_ _Cesar Lopez, Ebru Rice, Jack Skelton, Marni Sucher, Patric
   
 ## Contact Me <a id="contact"></a>
 
-Let me know if you run into any issues or have questions, ideas or concerns:  
-dolanp1992@gmail.com
+If you encounter any issues or have any questions or ideas for this site, please contact:
+
+Cesar Lopez:
+* Email: [Lopez.cesar.aug@gmail.com](mailto:lopez.cesar.aug@gmail.com)
+* Github: [wowgr8](https://github.com/wowgr8)
+* LinkedIn: [https://www.linkedin.com/in/cesar-aug-lopez](https://www.linkedin.com/in/cesar-aug-lopez)
